@@ -1,6 +1,7 @@
 const restaurantRow = (restaurant) => {
   const { name, address, city, company } = restaurant;
   const tr = document.createElement("tr");
+  tr.classList = "restaurant-row";
   const nameTd = document.createElement("td");
   nameTd.innerText = name;
   const addressTd = document.createElement("td");

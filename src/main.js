@@ -2,6 +2,10 @@
 import fetchData from "./modules/fetchData.js";
 import restaurantRow from "./modules/restaurantRow.js";
 import restaurantModal from "./modules/restaurantModal.js";
+import filterRows from "./modules/filterRows.js";
+import addModal from "./modules/addModal.js";
+import { haePaivanMenu } from "./modules/haut.js";
+import { haeRavintolat } from "./modules/haut.js";
 
 const apiUrl = "https://media2.edu.metropolia.fi/restaurant/api/v1";
 
@@ -9,23 +13,19 @@ const apiUrl = "https://media2.edu.metropolia.fi/restaurant/api/v1";
 const taulukko = document.querySelector("#target");
 const modal = document.querySelector("#modal");
 
-const haeRavintolat = async () => {
-  try {
-    // eslint-disable-next-line no-undef
-    return await fetchData(apiUrl + "/restaurants");
-  } catch (error) {
-    console.error(error);
-  }
-};
+const select = document.createElement("select");
+const option1 = document.createElement("option");
+option1.value = "All";
+option1.text = "All Companies";
+const option2 = document.createElement("option");
+option2.value = "Sodexo";
+option2.text = "Sodexo";
+const option3 = document.createElement("option");
+option3.value = "Compass Group";
+option3.text = "Compass Group";
 
-const haePaivanMenu = async (id, lang) => {
-  try {
-    // eslint-disable-next-line no-undef
-    return await fetchData(apiUrl + `/restaurants/daily/${id}/${lang}`);
-  } catch (error) {
-    console.error(error);
-  }
-};
+select.append(option1, option2, option3);
+document.body.insertBefore(select, taulukko);
 
 (async () => {
   const restaurants = await haeRavintolat();
@@ -38,22 +38,36 @@ const haePaivanMenu = async (id, lang) => {
   for (const restaurant of restaurants) {
     // rivi
     const tr = restaurantRow(restaurant);
-    tr.addEventListener("click", async () => {
-      for (const elem of document.querySelectorAll(".highlight")) {
-        elem.classList.remove("highlight");
-      }
-
-      tr.classList.add("highlight");
-
-      // tyhjennä modal
-      modal.innerHTML = "";
-      // avaa modal
-      modal.showModal();
-      // tee modalin sisältö
-      const pMenu = await haePaivanMenu(restaurant._id, "fi");
-      const modalDOM = restaurantModal(restaurant, pMenu);
-      modal.append(modalDOM);
-    });
+    addModal(tr, restaurant, modal);
     taulukko.append(tr);
   }
+
+  const rows = [];
+  restaurants.forEach((restaurant) => {
+    rows.push(restaurant);
+  });
+
+  // filter companies based on selection
+  select.addEventListener("change", () => {
+    if (select.value !== "All") {
+      const filteredRows = filterRows(rows, select.value);
+      for (const elem of document.querySelectorAll(".restaurant-row")) {
+        elem.remove();
+      }
+      filteredRows.forEach((row) => {
+        const tr = restaurantRow(row);
+        addModal(tr, row, modal);
+        taulukko.append(tr);
+      });
+    } else {
+      for (const elem of document.querySelectorAll(".restaurant-row")) {
+        elem.remove();
+      }
+      rows.forEach((row) => {
+        const tr = restaurantRow(row);
+        addModal(tr, row, modal);
+        taulukko.append(tr);
+      });
+    }
+  });
 })();
