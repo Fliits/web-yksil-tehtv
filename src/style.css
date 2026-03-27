@@ -6,7 +6,7 @@ body {
   padding: 0;
 }
 
-h1 {
+div {
   letter-spacing: 0.02em;
   margin: 2.5rem auto 1rem;
   max-width: 960px;
@@ -98,4 +98,8 @@ dialog#modal p {
 
 .course strong {
   color: #2c2018;
+}
+
+select {
+  margin: 0 auto 2rem;
 }

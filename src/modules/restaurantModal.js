@@ -1,4 +1,4 @@
-import { teeMenuHTML } from "./teeMenuHTML.js";
+import { createMenu } from "./createMenu.js";
 
 const restaurantModal = (restaurant, menu) => {
   const container = document.createElement("div");
@@ -25,7 +25,7 @@ const restaurantModal = (restaurant, menu) => {
   container.append(nameH3, addressP, cityP, postalCodeP, phoneP, companyP);
 
   const menuContainer = document.createElement("div");
-  menuContainer.innerHTML = teeMenuHTML(menu.courses || []);
+  menuContainer.append(createMenu(menu.courses));
   container.append(menuContainer);
   return container;
 };

@@ -1,10 +1,7 @@
 "use strict";
-import fetchData from "./modules/fetchData.js";
 import restaurantRow from "./modules/restaurantRow.js";
-import restaurantModal from "./modules/restaurantModal.js";
 import filterRows from "./modules/filterRows.js";
 import addModal from "./modules/addModal.js";
-import { haePaivanMenu } from "./modules/haut.js";
 import { haeRavintolat } from "./modules/haut.js";
 
 const apiUrl = "https://media2.edu.metropolia.fi/restaurant/api/v1";
@@ -25,7 +22,7 @@ option3.value = "Compass Group";
 option3.text = "Compass Group";
 
 select.append(option1, option2, option3);
-document.body.insertBefore(select, taulukko);
+document.querySelector("div").insertAdjacentElement("afterend", select);
 
 (async () => {
   const restaurants = await haeRavintolat();
