@@ -24,6 +24,11 @@ option3.text = "Compass Group";
 select.append(option1, option2, option3);
 document.querySelector("div").insertAdjacentElement("afterend", select);
 
+const loginBtn = document.querySelector("#login-btn");
+loginBtn.addEventListener("click", () => {
+  window.location.href = "login.html";
+});
+
 (async () => {
   const restaurants = await haeRavintolat();
   // console.log(restaurants);
