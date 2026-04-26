@@ -3,7 +3,7 @@ import restaurantRow from "./modules/restaurantRow.js";
 import filterRows from "./modules/filterRows.js";
 import addModal from "./modules/addModal.js";
 import { haeRavintolat } from "./modules/haut.js";
-import loginForm from "./modules/loginForm.js";
+import { loginForm } from "./modules/loginForm.js";
 
 const apiUrl = "https://media2.edu.metropolia.fi/restaurant/api/v1";
 
@@ -25,7 +25,9 @@ option3.text = "Compass Group";
 select.append(option1, option2, option3);
 document.querySelector("div").insertAdjacentElement("afterend", select);
 
-loginForm();
+const login = document.createElement("div");
+login.innerHTML = loginForm();
+document.querySelector("div").insertAdjacentElement("afterend", login);
 
 (async () => {
   const restaurants = await haeRavintolat();
