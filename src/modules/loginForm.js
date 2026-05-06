@@ -2,11 +2,11 @@ const loginForm = () => {
   const html = `
     <h2>Kirjaudu sisään</h2>
     <form id="login-form">
-      <label for="username">Käyttäjätunnus:</label>
-      <input type="text" id="username" name="username" autoComplete="username" required>
-      <label for="password">Salasana:</label>
-      <input type="password" id="password" name="password" autoComplete="password" required>
-      <button type="submit">Kirjaudu</button>
+      <label for="loginUsername">Käyttäjätunnus:</label>
+      <input type="text" id="loginUsername" name="username" autoComplete="username" required>
+      <label for="loginPassword">Salasana:</label>
+      <input type="password" id="loginPassword" name="password" autoComplete="password" required>
+      <button type="submit" id="loginButton" method="post">Kirjaudu</button>
     </form>
   `;
   return html;

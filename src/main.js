@@ -3,11 +3,12 @@ import restaurantRow from "./modules/restaurantRow.js";
 import filterRows from "./modules/filterRows.js";
 import addModal from "./modules/addModal.js";
 import { haeRavintolat } from "./modules/haut.js";
+import profileMain from "./modules/profileMain.js";
+import { registerForm } from "./modules/registerForm.js";
 import { loginForm } from "./modules/loginForm.js";
+import submitLogin from "./modules/submitLogin.js";
+import submitRegister from "./modules/submitRegister.js";
 
-const apiUrl = "https://media2.edu.metropolia.fi/restaurant/api/v1";
-
-// your code here
 const taulukko = document.querySelector("#target");
 const modal = document.querySelector("#modal");
 
@@ -27,7 +28,21 @@ document.querySelector("div").insertAdjacentElement("afterend", select);
 
 const login = document.createElement("div");
 login.innerHTML = loginForm();
-document.querySelector("div").insertAdjacentElement("afterend", login);
+submitLogin(login);
+document.querySelector("#profile").appendChild(login);
+
+const register = document.createElement("div");
+register.innerHTML = registerForm();
+submitRegister(register);
+document.querySelector("#profile").appendChild(register);
+
+const logout = document.createElement("button");
+logout.id = "logout";
+logout.innerText = "Logout";
+document.querySelector("#profile").appendChild(logout);
+logout.style.display = "none";
+
+const profile = profileMain(modal, login, logout);
 
 (async () => {
   const restaurants = await haeRavintolat();

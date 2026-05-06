@@ -81,6 +81,34 @@ dialog#modal p {
   text-align: right;
 }
 
+dialog#modal button {
+  background-color: #2f2c27;
+  border: none;
+  border-radius: 4px;
+  color: #f8f4eb;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+  margin: 0 0 0 80%;
+}
+
+dialog#modal input {
+  border: 1px solid #d7d1c6;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  width: 90%;
+  margin: 0 0 1rem 0.5rem;
+}
+
+dialog#modal img {
+  display: block;
+  margin: 0 auto 1rem;
+}
+
 .course {
   border-bottom: 1px solid #efe9df;
   display: grid;
@@ -102,4 +130,50 @@ dialog#modal p {
 
 select {
   margin: 0 auto 2rem;
+  display: block;
+  position: relative;
+  width: 200px;
+}
+
+#profile {
+  background-color: #4e463a;
+  border: none;
+  border-radius: 4px;
+  color: #f8f4eb;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  display: block;
+  margin: 0 auto;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+button {
+  background-color: #2f2c27;
+  border: none;
+  border-radius: 4px;
+  color: #f8f4eb;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+#profile button {
+  background-color: #2f2c27;
+  margin: 0.5rem auto;
+  display: block;
+}
+
+#profilebutton {
+  background-color: transparent;
+  border: none;
+  color: #f8f4eb;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  margin: 0;
 }
